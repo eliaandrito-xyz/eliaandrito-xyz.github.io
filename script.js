@@ -1,22 +1,46 @@
 /* ==========================================================================
-   ANDRITO ELIA - PORTFOLIO INTERACTIVE SCRIPT
+   ANDRITO ELIA - ULTRA-PREMIUM INTERACTIVE SCRIPT WITH UNIQUE ANIMATIONS
    ========================================================================== */
 
+let bgMode = 'constellation'; // 'constellation', 'matrix', 'warp'
+
 document.addEventListener('DOMContentLoaded', () => {
+  initCursorSpotlight();
   initTypingEffect();
   initCanvasBackground();
+  initBgModeToggle();
+  initClickRipples();
   initThemeToggle();
   initNavigation();
   initProjectFilters();
+  initCertSearch();
+  initCliTerminal();
   initPdfModal();
   initProjectModal();
   initWaForm();
   initCopyEmail();
   initBackToTop();
+  initScrollReveal();
+  init3DTilt();
+  initCounterStats();
+  initMagneticButtons();
+  initCardSpotlight();
 });
 
 /* -------------------------------------------------------------------------- */
-/* 1. TYPING EFFECT                                                           */
+/* 1. CURSOR SPOTLIGHT TRACKER                                               */
+/* -------------------------------------------------------------------------- */
+function initCursorSpotlight() {
+  const glow = document.getElementById('cursor-glow');
+  if (!glow || window.innerWidth <= 768) return;
+
+  window.addEventListener('mousemove', (e) => {
+    glow.style.transform = `translate(${e.clientX - 250}px, ${e.clientY - 250}px)`;
+  });
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. TYPING EFFECT                                                           */
 /* -------------------------------------------------------------------------- */
 function initTypingEffect() {
   const typingElement = document.getElementById('typing-text');
@@ -24,7 +48,7 @@ function initTypingEffect() {
 
   const words = [
     "Lulusan Teknik Informatika",
-    "Web Application Developer",
+    "Full-Stack Web Developer",
     "Cyber Security Enthusiast",
     "Database & System Analyst",
     "Networking & IoT Specialist"
@@ -49,7 +73,7 @@ function initTypingEffect() {
     }
 
     if (!isDeleting && charIndex === currentWord.length) {
-      typeSpeed = 2000; // Pause at end of word
+      typeSpeed = 2200; // Pause at end of word
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
@@ -64,7 +88,7 @@ function initTypingEffect() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 2. CANVAS BACKGROUND ANIMATION (CYBER PARTICLES)                           */
+/* 3. MULTI-MODE CANVAS BACKGROUND (CONSTELLATION, MATRIX RAIN, WARP)       */
 /* -------------------------------------------------------------------------- */
 function initCanvasBackground() {
   const canvas = document.getElementById('bg-canvas');
@@ -74,59 +98,145 @@ function initCanvasBackground() {
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
+  const mouse = { x: null, y: null, radius: 160 };
+
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+  });
+
+  window.addEventListener('mouseout', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
   window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   });
 
+  // --- Constellation Particles ---
   const particles = [];
-  const particleCount = Math.min(Math.floor(width / 25), 60);
-
+  const particleCount = Math.min(Math.floor(width / 20), 75);
   for (let i = 0; i < particleCount; i++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.6,
-      vy: (Math.random() - 0.5) * 0.6,
-      radius: Math.random() * 2 + 1,
+      vx: (Math.random() - 0.5) * 0.7,
+      vy: (Math.random() - 0.5) * 0.7,
+      radius: Math.random() * 2.2 + 1,
+      color: i % 3 === 0 ? 'rgba(99, 102, 241, ' : (i % 3 === 1 ? 'rgba(56, 189, 248, ' : 'rgba(192, 132, 252, '),
       alpha: Math.random() * 0.5 + 0.2
     });
   }
 
+  // --- Matrix Digital Rain ---
+  const matrixChars = '0123456789ABCDEFHIJKLMNOPQRSTUVWXYZ';
+  const fontSize = 14;
+  const columns = Math.floor(width / fontSize);
+  const drops = Array(columns).fill(1);
+
+  // --- Warp Stars ---
+  const stars = [];
+  for (let i = 0; i < 150; i++) {
+    stars.push({
+      x: (Math.random() - 0.5) * width,
+      y: (Math.random() - 0.5) * height,
+      z: Math.random() * width
+    });
+  }
+
   function animate() {
-    ctx.clearRect(0, 0, width, height);
+    const isLight = document.documentElement.classList.contains('light');
 
-    // Draw connecting lines
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+    if (bgMode === 'constellation') {
+      ctx.clearRect(0, 0, width, height);
 
-        if (dist < 140) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - dist / 140)})`;
-          ctx.lineWidth = 1;
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.strokeStyle = isLight 
+              ? `rgba(79, 70, 229, ${0.15 * (1 - dist / 130)})`
+              : `rgba(99, 102, 241, ${0.18 * (1 - dist / 130)})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const mdx = particles[i].x - mouse.x;
+          const mdy = particles[i].y - mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+          if (mdist < mouse.radius) {
+            const force = (mouse.radius - mdist) / mouse.radius;
+            particles[i].x += (mdx / mdist) * force * 3;
+            particles[i].y += (mdy / mdist) * force * 3;
+          }
         }
       }
+
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + (isLight ? p.alpha * 0.8 : p.alpha) + ')';
+        ctx.fill();
+      });
+
+    } else if (bgMode === 'matrix') {
+      ctx.fillStyle = isLight ? 'rgba(248, 250, 252, 0.18)' : 'rgba(6, 9, 19, 0.12)';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = isLight ? '#059669' : '#10b981';
+      ctx.font = `${fontSize}px var(--font-mono)`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+
+    } else if (bgMode === 'warp') {
+      ctx.fillStyle = isLight ? 'rgba(248, 250, 252, 0.3)' : 'rgba(6, 9, 19, 0.25)';
+      ctx.fillRect(0, 0, width, height);
+
+      const cx = width / 2;
+      const cy = height / 2;
+
+      stars.forEach(s => {
+        s.z -= 4;
+        if (s.z <= 0) s.z = width;
+
+        const k = 128 / s.z;
+        const px = s.x * k + cx;
+        const py = s.y * k + cy;
+
+        if (px >= 0 && px < width && py >= 0 && py < height) {
+          const size = (1 - s.z / width) * 3;
+          ctx.beginPath();
+          ctx.arc(px, py, Math.max(0.5, size), 0, Math.PI * 2);
+          ctx.fillStyle = isLight ? '#4f46e5' : '#38bdf8';
+          ctx.fill();
+        }
+      });
     }
-
-    // Draw particles
-    particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.x < 0 || p.x > width) p.vx *= -1;
-      if (p.y < 0 || p.y > height) p.vy *= -1;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(56, 189, 248, ${p.alpha})`;
-      ctx.fill();
-    });
 
     requestAnimationFrame(animate);
   }
@@ -134,8 +244,267 @@ function initCanvasBackground() {
   animate();
 }
 
+function initBgModeToggle() {
+  const modeBtns = document.querySelectorAll('#bg-mode-btn, #bg-mode-btn-mobile');
+  if (!modeBtns.length) return;
+
+  const modes = ['constellation', 'matrix', 'warp'];
+
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currentIndex = modes.indexOf(bgMode);
+      bgMode = modes[(currentIndex + 1) % modes.length];
+      showToast(`Mode Latar Belakang: ${bgMode.toUpperCase()}`);
+    });
+  });
+}
+
 /* -------------------------------------------------------------------------- */
-/* 3. THEME TOGGLE (DARK / LIGHT)                                             */
+/* 4. CLICK SHOCKWAVE RIPPLE                                                  */
+/* -------------------------------------------------------------------------- */
+function initClickRipples() {
+  window.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.left = `${e.clientX}px`;
+    ripple.style.top = `${e.clientY}px`;
+    ripple.style.width = '50px';
+    ripple.style.height = '50px';
+    document.body.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. REAL-TIME CERTIFICATE SEARCH SYSTEM                                     */
+/* -------------------------------------------------------------------------- */
+function initCertSearch() {
+  const searchInput = document.getElementById('cert-search-input');
+  const certCards = document.querySelectorAll('.cert-card');
+  if (!searchInput) return;
+
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+
+    certCards.forEach(card => {
+      const keywords = card.getAttribute('data-keywords') || '';
+      const text = card.innerText.toLowerCase();
+
+      if (query === '' || keywords.includes(query) || text.includes(query)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. INTERACTIVE CYBER CLI TERMINAL                                          */
+/* -------------------------------------------------------------------------- */
+function initCliTerminal() {
+  const modal = document.getElementById('cli-modal');
+  const openBtns = document.querySelectorAll('#cli-btn, #cli-btn-mobile, .open-cli-trigger');
+  const closeBtn = document.getElementById('cli-modal-close');
+  const overlay = modal ? modal.querySelector('.modal-overlay') : null;
+  const cliInput = document.getElementById('cli-input');
+  const cliOutput = document.getElementById('cli-output');
+
+  if (!modal || !cliInput) return;
+
+  openBtns.forEach(b => {
+    b.addEventListener('click', () => {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => cliInput.focus(), 100);
+    });
+  });
+
+  const closeCLI = () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  if (closeBtn) closeBtn.addEventListener('click', closeCLI);
+  if (overlay) overlay.addEventListener('click', closeCLI);
+
+  cliInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const cmd = cliInput.value.trim().toLowerCase();
+      cliInput.value = '';
+
+      if (cmd === '') return;
+
+      appendCliLine(`guest@andrito-elia:~$ ${cmd}`, 'cli-out-cyan');
+      processCommand(cmd);
+    }
+  });
+
+  function processCommand(cmd) {
+    switch (cmd) {
+      case 'help':
+        appendCliLine('Daftar Perintah Cyber Terminal:', 'cli-out-amber');
+        appendCliLine(' - about     : Informasi singkat & profil Andrito Elia');
+        appendCliLine(' - skills    : Ringkasan keahlian teknis (Web, Security, DB)');
+        appendCliLine(' - projects  : Daftar proyek portofolio & repository GitHub');
+        appendCliLine(' - certs     : Daftar sertifikat & prestasi nasional');
+        appendCliLine(' - contact   : Kontak WhatsApp & Email resmi');
+        appendCliLine(' - matrix    : Aktifkan mode background Matrix Digital Rain');
+        appendCliLine(' - clear     : Membersihkan layar terminal');
+        break;
+
+      case 'about':
+      case 'bio':
+        appendCliLine('[PROFIL ANDRITO ELIA]', 'cli-out-green');
+        appendCliLine('Gelar: S1 Teknik Informatika (STIKOM Uyelindo & PMM 4 IT Telkom Purwokerto)');
+        appendCliLine('TTL: Mondo, 13 Mei 2003 | Domisili: Kupang, Nusa Tenggara Timur');
+        appendCliLine('Spesialisasi: Pemrograman Web, Basis Data, Jaringan, Cyber Security');
+        break;
+
+      case 'skills':
+        appendCliLine('[KEAHILAN TEKNIS]', 'cli-out-amber');
+        appendCliLine('• Web Dev: PHP, JavaScript, HTML5/CSS3, Bootstrap, TypeScript');
+        appendCliLine('• Database: MySQL, PostgreSQL, Query Optimization, ERD');
+        appendCliLine('• Security & Network: Network Defense, Vulnerability Scanning, TCP/IP, IoT');
+        appendCliLine('• ML & Data: Python Analytics, CNN Waste Classification');
+        break;
+
+      case 'projects':
+        appendCliLine('[PROYEK HARGA KARYA]', 'cli-out-cyan');
+        appendCliLine('1. Smart Waste System (Python CNN & Web Dashboard)');
+        appendCliLine('2. Sistem Booking & Manajemen Perumahan (PHP & MySQL)');
+        appendCliLine('3. Sistem Booking Jasa Penjahit Online (PHP)');
+        appendCliLine('4. Aplikasi Layanan Agen SAMSAT (PHP)');
+        appendCliLine('5. Manajemen Data Gereja & Keuangan (PHP)');
+        appendCliLine('6. Kasir Kosmetik Point of Sale (JavaScript)');
+        break;
+
+      case 'certs':
+      case 'awards':
+        appendCliLine('[REKAP PRESTASI & SERTIFIKAT]', 'cli-out-green');
+        appendCliLine('🏆 Finalis Cyber Security Startup Challenge (CSSC) 2025 Jakarta');
+        appendCliLine('🎓 Sertifikat Pertukaran Mahasiswa Merdeka (PMM 4)');
+        appendCliLine('🛡️ Sertifikat Instruktur Cyber Security & IoT');
+        appendCliLine('🥇 Piagam Penghargaan Lomba Inovasi Digital Kavinya');
+        appendCliLine('🎨 Peserta Lomba Desain Grafis Nasional UNIKA (PISMA VIII)');
+        break;
+
+      case 'contact':
+      case 'hire':
+        appendCliLine('[INFORMASI KONTAK]', 'cli-out-amber');
+        appendCliLine('• Email: eliaandrito@gmail.com');
+        appendCliLine('• WhatsApp: +62 85-2373-0772 (wa.me/628523730772)');
+        appendCliLine('• Instagram: @andritoelia');
+        appendCliLine('• GitHub: github.com/eliaandrito-xyz');
+        break;
+
+      case 'matrix':
+        bgMode = 'matrix';
+        appendCliLine('[SYS] Mode background diubah ke Matrix Digital Rain!', 'cli-out-green');
+        break;
+
+      case 'clear':
+        cliOutput.innerHTML = '';
+        break;
+
+      default:
+        appendCliLine(`Command '${cmd}' tidak ditemukan. Ketik 'help' untuk petunjuk.`, 'cli-out-red');
+    }
+
+    const cliBody = document.getElementById('cli-body');
+    if (cliBody) cliBody.scrollTop = cliBody.scrollHeight;
+  }
+
+  function appendCliLine(text, cssClass = '') {
+    const div = document.createElement('div');
+    div.className = `cli-out-line ${cssClass}`;
+    div.textContent = text;
+    cliOutput.appendChild(div);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 8. SCROLL REVEAL OBSERVER                                                  */
+/* -------------------------------------------------------------------------- */
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-active');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealElements.forEach(el => observer.observe(el));
+}
+
+/* -------------------------------------------------------------------------- */
+/* 9. 3D TILT EFFECT FOR CARDS                                                */
+/* -------------------------------------------------------------------------- */
+function init3DTilt() {
+  const tiltCards = document.querySelectorAll('.tilt-card');
+
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -8;
+      const rotateY = ((x - centerX) / centerX) * 8;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+  });
+}
+
+/* -------------------------------------------------------------------------- */
+/* 10. COUNTER STATS ANIMATION                                                */
+/* -------------------------------------------------------------------------- */
+function initCounterStats() {
+  const stats = document.querySelectorAll('.stat-num');
+  let animated = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        stats.forEach(stat => {
+          const target = parseInt(stat.getAttribute('data-target') || '0', 10);
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const interval = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              stat.textContent = target;
+              clearInterval(interval);
+            } else {
+              stat.textContent = current;
+            }
+          }, 30);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) observer.observe(heroStats);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 11. THEME TOGGLE (DARK / LIGHT)                                            */
 /* -------------------------------------------------------------------------- */
 function initThemeToggle() {
   const themeBtn = document.getElementById('theme-toggle');
@@ -155,7 +524,7 @@ function initThemeToggle() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 4. NAVIGATION & MOBILE MENU                                                */
+/* 12. NAVIGATION & MOBILE MENU                                               */
 /* -------------------------------------------------------------------------- */
 function initNavigation() {
   const menuToggle = document.getElementById('menu-toggle');
@@ -202,7 +571,7 @@ function initNavigation() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 5. PROJECT FILTERS                                                         */
+/* 13. PROJECT FILTERS                                                        */
 /* -------------------------------------------------------------------------- */
 function initProjectFilters() {
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -228,7 +597,7 @@ function initProjectFilters() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 6. PDF MODAL VIEWER                                                         */
+/* 14. PDF MODAL VIEWER                                                       */
 /* -------------------------------------------------------------------------- */
 function initPdfModal() {
   const modal = document.getElementById('pdf-modal');
@@ -261,7 +630,7 @@ function initPdfModal() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 7. PROJECT DETAIL MODAL                                                    */
+/* 15. PROJECT DETAIL MODAL                                                   */
 /* -------------------------------------------------------------------------- */
 const projectData = {
   p1: {
@@ -346,7 +715,6 @@ function initProjectModal() {
       if (modal) modal.classList.add('active');
       document.body.style.overflow = 'hidden';
 
-      // Re-bind close button inside generated content
       modalContent.querySelectorAll('.modal-close-btn').forEach(b => {
         b.addEventListener('click', () => {
           modal.classList.remove('active');
@@ -365,7 +733,7 @@ function initProjectModal() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 8. WHATSAPP DIRECT FORM HANDLER                                            */
+/* 16. WHATSAPP DIRECT FORM HANDLER                                           */
 /* -------------------------------------------------------------------------- */
 function initWaForm() {
   const form = document.getElementById('wa-form');
@@ -387,7 +755,7 @@ function initWaForm() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 9. COPY EMAIL & TOAST NOTIFICATION                                         */
+/* 17. COPY EMAIL & TOAST NOTIFICATION                                        */
 /* -------------------------------------------------------------------------- */
 function initCopyEmail() {
   const copyBtns = document.querySelectorAll('.copy-email-btn');
@@ -418,7 +786,7 @@ function showToast(msg) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 10. BACK TO TOP BUTTON                                                     */
+/* 18. BACK TO TOP BUTTON                                                     */
 /* -------------------------------------------------------------------------- */
 function initBackToTop() {
   const btn = document.getElementById('back-to-top');
@@ -434,5 +802,42 @@ function initBackToTop() {
 
   btn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+/* -------------------------------------------------------------------------- */
+/* 19. MAGNETIC HOVER BUTTONS                                                */
+/* -------------------------------------------------------------------------- */
+function initMagneticButtons() {
+  if (window.innerWidth <= 768) return;
+  const magneticElements = document.querySelectorAll('.btn-primary, .btn-glow, .icon-btn');
+
+  magneticElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'translate(0px, 0px)';
+    });
+  });
+}
+
+/* -------------------------------------------------------------------------- */
+/* 20. GLASS CARD DYNAMIC SPOTLIGHT GLOW                                      */
+/* -------------------------------------------------------------------------- */
+function initCardSpotlight() {
+  const cards = document.querySelectorAll('.glass-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
   });
 }
