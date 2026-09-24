@@ -1,113 +1,853 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio | Lulusan Teknik Informatika</title>
+  <title>Andrito Elia | Portofolio & Web Developer</title>
+  <meta name="description" content="Portofolio resmi Andrito Elia, S.Kom. Lulusan Teknik Informatika dengan keahlian di bidang Web Development, Keamanan Siber (Cyber Security), Database, dan Jaringan Komputer.">
+  <meta name="keywords" content="Andrito Elia, Portofolio, Teknik Informatika, Web Developer, Cyber Security, Kupang, NTT, Fullstack Developer">
+  <meta name="author" content="Andrito Elia">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Andrito Elia | Portofolio & IT Specialist">
+  <meta property="og:description" content="Portofolio Profesional Andrito Elia - Lulusan Teknik Informatika, Developer Web & Cyber Security Enthusiast.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/profil/rito2.jpeg">
+
+  <!-- Favicon / Fonts / Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="navbar">
-    <a class="logo" href="#home">Portfolio</a>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">Tentang</a>
-      <a href="#skills">Keahlian</a>
-      <a href="#projects">Proyek</a>
-      <a href="#contact">Kontak</a>
-    </nav>
+
+  <!-- Canvas Background Effect -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-code"></i></span>
+        <span class="logo-text">ANDRITO<span>ELIA</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#home" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> Data Diri</a>
+        <a href="#skills" class="nav-link"><i class="fa-solid fa-laptop-code"></i> Keahlian</a>
+        <a href="#projects" class="nav-link"><i class="fa-solid fa-diagram-project"></i> Proyek</a>
+        <a href="#certificates" class="nav-link"><i class="fa-solid fa-award"></i> Sertifikat</a>
+        <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Kontak</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="icon-btn" aria-label="Ubah Tema">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="#contact" class="btn btn-nav-cta">
+          <span>Hubungi Saya</span> <i class="fa-solid fa-paper-plane"></i>
+        </a>
+        <button id="menu-toggle" class="icon-btn mobile-only" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">LULUSAN TEKNIK INFORMATIKA</p>
-        <h1>Elia Andrito</h1>
-        <h2>IT & Software Enthusiast</h2>
-        <p>
-          Memiliki kemampuan di bidang pemrograman, basis data, jaringan komputer,
-          pengembangan web, dan keamanan siber.
-        </p>
-        <div class="buttons">
-          <a class="btn primary" href="#projects">Lihat Proyek</a>
-          <a class="btn secondary" href="#contact">Hubungi Saya</a>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content" data-aos="fade-up">
+          <div class="status-badge">
+            <span class="pulse-dot"></span>
+            <span>Available for Tech Opportunities & Freelance</span>
+          </div>
+
+          <h1 class="hero-title">
+            Halo, Saya <span class="gradient-text">Andrito Elia</span>
+          </h1>
+
+          <div class="hero-subtitle">
+            <span id="typing-text">Lulusan Teknik Informatika</span>
+            <span class="cursor">|</span>
+          </div>
+
+          <p class="hero-description">
+            Lulusan <strong>Teknik Informatika</strong> yang berdedikasi tinggi dengan keahlian di bidang 
+            <strong>Pemrograman Web</strong>, <strong>Basis Data</strong>, <strong>Jaringan Komputer</strong>, 
+            serta <strong>Keamanan Siber (Cyber Security)</strong>. Siap mengembangkan inovasi berbasis teknologi informasi.
+          </p>
+
+          <div class="hero-info-chips">
+            <div class="chip"><i class="fa-solid fa-location-dot"></i> Kupang, NTT</div>
+            <div class="chip"><i class="fa-solid fa-graduation-cap"></i> S1 Teknik Informatika</div>
+            <div class="chip"><i class="fa-solid fa-shield-halved"></i> Cyber Security Enthusiast</div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+              <span>Jelajahi Proyek</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#certificates" class="btn btn-secondary">
+              <i class="fa-solid fa-award"></i> <span>Lihat Sertifikat</span>
+            </a>
+            <a href="mailto:eliaandrito@gmail.com" class="btn btn-outline">
+              <i class="fa-solid fa-envelope"></i> <span>Kirim Email</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="profile-card-glass">
+            <div class="profile-image-container">
+              <img src="assets/profil/rito2.jpeg" alt="Andrito Elia" class="profile-img">
+              <div class="profile-overlay-gradient"></div>
+            </div>
+            
+            <div class="profile-card-footer">
+              <h3>Andrito Elia</h3>
+              <p>IT Specialist & Web Developer</p>
+            </div>
+
+            <!-- Floating Tech Badges -->
+            <div class="floating-badge badge-1">
+              <i class="fa-brands fa-php"></i> PHP & MySQL
+            </div>
+            <div class="floating-badge badge-2">
+              <i class="fa-solid fa-shield-halved"></i> Cyber Security
+            </div>
+            <div class="floating-badge badge-3">
+              <i class="fa-brands fa-python"></i> Python ML & Data
+            </div>
+            <div class="floating-badge badge-4">
+              <i class="fa-solid fa-network-wired"></i> Computer Network
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section">
-      <p class="section-label">TENTANG SAYA</p>
-      <h2>Profil</h2>
-      <p>
-        Saya merupakan Lulusan Teknik Informatika dengan kemampuan di bidang
-        pemrograman, basis data, jaringan komputer, dan keamanan siber.
-        Memiliki kemampuan analitis, mampu bekerja secara individu maupun dalam tim,
-        serta siap mengembangkan keterampilan dan berkontribusi dalam menyelesaikan
-        permasalahan berbasis teknologi informasi.
-      </p>
-    </section>
+    <!-- DATA DIRI & ABOUT SECTION -->
+    <section id="about" class="section about-section">
+      <div class="section-header">
+        <span class="section-subtitle"><i class="fa-solid fa-user-gear"></i> TENTANG SAYA</span>
+        <h2 class="section-title">Profil & Data Diri</h2>
+        <div class="section-line"></div>
+      </div>
 
-    <section id="skills" class="section">
-      <p class="section-label">KEAHLIAN</p>
-      <h2>Technical Skills</h2>
-      <div class="skill-grid">
-        <div class="card"><h3>Pemrograman</h3><p>Python, Java, C++</p></div>
-        <div class="card"><h3>Web Development</h3><p>HTML, CSS, JavaScript, PHP</p></div>
-        <div class="card"><h3>Database</h3><p>MySQL, PostgreSQL</p></div>
-        <div class="card"><h3>Analisis Sistem</h3><p>Analisis dan perancangan perangkat lunak</p></div>
-        <div class="card"><h3>Jaringan</h3><p>Pengelolaan jaringan komputer</p></div>
-        <div class="card"><h3>Cyber Security</h3><p>Dasar keamanan sistem informasi</p></div>
-        <div class="card"><h3>Data</h3><p>Pengolahan dan analisis data</p></div>
+      <div class="about-grid">
+        <!-- Card 1: Biodata Info -->
+        <div class="glass-card biodata-card">
+          <div class="card-header">
+            <i class="fa-solid fa-id-card card-icon"></i>
+            <h3>Informasi Personal</h3>
+          </div>
+          <ul class="biodata-list">
+            <li>
+              <span class="bio-label"><i class="fa-solid fa-user"></i> Nama Lengkap</span>
+              <span class="bio-val">ANDRITO ELIA</span>
+            </li>
+            <li>
+              <span class="bio-label"><i class="fa-solid fa-cake-candles"></i> Tempat / Tgl Lahir</span>
+              <span class="bio-val">Mondo, 13 Mei 2003</span>
+            </li>
+            <li>
+              <span class="bio-label"><i class="fa-solid fa-mars"></i> Jenis Kelamin</span>
+              <span class="bio-val">Laki-Laki</span>
+            </li>
+            <li>
+              <span class="bio-label"><i class="fa-solid fa-ring"></i> Status</span>
+              <span class="bio-val">Belum Menikah</span>
+            </li>
+            <li>
+              <span class="bio-label"><i class="fa-solid fa-flag"></i> Kewarganegaraan</span>
+              <span class="bio-val">Indonesia</span>
+            </li>
+            <li>
+              <span class="bio-label"><i class="fa-solid fa-map-location-dot"></i> Domisili</span>
+              <span class="bio-val">Kupang, Nusa Tenggara Timur</span>
+            </li>
+            <li>
+              <span class="bio-label"><i class="fa-solid fa-phone"></i> No. Kontak</span>
+              <span class="bio-val"><a href="https://wa.me/628523730772" target="_blank">+62 85-2373-0772</a></span>
+            </li>
+            <li>
+              <span class="bio-label"><i class="fa-solid fa-envelope"></i> Email</span>
+              <span class="bio-val"><a href="mailto:eliaandrito@gmail.com">eliaandrito@gmail.com</a></span>
+            </li>
+            <li>
+              <span class="bio-label"><i class="fa-brands fa-instagram"></i> Sosial Media</span>
+              <span class="bio-val">@andritoelia</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Narrative & Overview -->
+        <div class="glass-card overview-card">
+          <div class="card-header">
+            <i class="fa-solid fa-bullseye card-icon"></i>
+            <h3>Ringkasan Profesional</h3>
+          </div>
+          <p class="about-text">
+            Saya merupakan <strong>Lulusan Teknik Informatika</strong> yang memiliki minat mendalam dan kompetensi di bidang 
+            pemrograman, pengelolaan basis data, jaringan komputer, dan keamanan siber. 
+          </p>
+          <p class="about-text">
+            Memiliki kemampuan analitis yang tajam, disiplin, mumpuni dalam bekerja secara mandiri maupun berkolaborasi dalam tim, 
+            serta selalu siap mengembangkan keterampilan baru guna berkontribusi nyata dalam memecahkan permasalahan teknologi masa kini.
+          </p>
+
+          <div class="highlight-boxes">
+            <div class="h-box">
+              <i class="fa-solid fa-brain"></i>
+              <div>
+                <h4>Kemampuan Analitis</h4>
+                <p>Mampu mendesain arsitektur perangkat lunak dan menganalisis sistem secara mendalam.</p>
+              </div>
+            </div>
+            <div class="h-box">
+              <i class="fa-solid fa-people-group"></i>
+              <div>
+                <h4>Kerja Sama Tim & Individu</h4>
+                <p>Komunikatif, adaptif dalam proyek kolaboratif, serta mandiri dalam penyelesaian tugas.</p>
+              </div>
+            </div>
+            <div class="h-box">
+              <i class="fa-solid fa-shield-halved"></i>
+              <div>
+                <h4>Fokus Keamanan & Inovasi</h4>
+                <p>Memahami konsep cyber defense, secure coding, dan pengembangan sistem berbasis web modern.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <p class="section-label">PROYEK</p>
-      <h2>Project yang Pernah Dikerjakan</h2>
-      <div class="project-grid">
-        <article class="card project">
-          <h3>Booking-Perumahan</h3>
-          <p>Sistem manajemen proyek/perumahan untuk mengelola data developer, unit rumah, gambar, dan fasilitas.</p>
-          <span>PHP</span>
-          <a href="https://github.com/eliaandrito-xyz/Booking-Perumahan" target="_blank" rel="noopener">Lihat di GitHub →</a>
-        </article>
-
-        <article class="card project">
-          <h3>Smart Waste DKI</h3>
-          <p>Dashboard prediksi volume sampah dan optimasi armada berbasis machine learning.</p>
-          <span>Python</span>
-          <a href="https://github.com/eliaandrito-xyz/smartwaste-dki" target="_blank" rel="noopener">Lihat di GitHub →</a>
-        </article>
-
-        <article class="card project">
-          <h3>Deteksi Sampah CNN</h3>
-          <p>Proyek klasifikasi/deteksi sampah menggunakan pendekatan computer vision.</p>
-          <span>TypeScript</span>
-          <a href="https://github.com/eliaandrito-xyz/Deteksi_Sampah_CNN" target="_blank" rel="noopener">Lihat di GitHub →</a>
-        </article>
-
-        <article class="card project">
-          <h3>Kasir Kosmetik</h3>
-          <p>Aplikasi kasir sederhana untuk pengelolaan transaksi produk kosmetik.</p>
-          <span>JavaScript</span>
-          <a href="https://github.com/eliaandrito-xyz/kasir_cosmetik" target="_blank" rel="noopener">Lihat di GitHub →</a>
-        </article>
+    <!-- KEAHLIAN SECTION -->
+    <section id="skills" class="section skills-section">
+      <div class="section-header">
+        <span class="section-subtitle"><i class="fa-solid fa-gears"></i> KOMPETENSI TEKNIS</span>
+        <h2 class="section-title">Keahlian Utama</h2>
+        <div class="section-line"></div>
       </div>
-      <p class="note">Tambahkan proyek lain dengan menyalin pola kartu proyek di atas.</p>
+
+      <div class="skills-grid">
+        <div class="glass-card skill-card">
+          <div class="skill-icon-wrapper color-1">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <h3>Pemrograman & Web</h3>
+          <p class="skill-desc">Pengembangan aplikasi web modern dan logika pemrograman yang aman & efisien.</p>
+          <div class="skill-tags">
+            <span class="tag">HTML5 & CSS3</span>
+            <span class="tag">JavaScript (ES6+)</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Python</span>
+            <span class="tag">C++</span>
+            <span class="tag">Java</span>
+            <span class="tag">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="glass-card skill-card">
+          <div class="skill-icon-wrapper color-2">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <h3>Basis Data (Database)</h3>
+          <p class="skill-desc">Perancangan skema ERD, optimasi query, manajemen relasi data, serta keamanan basis data.</p>
+          <div class="skill-tags">
+            <span class="tag">MySQL</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Relational DB</span>
+            <span class="tag">Query Optimization</span>
+            <span class="tag">phpMyAdmin</span>
+          </div>
+        </div>
+
+        <div class="glass-card skill-card">
+          <div class="skill-icon-wrapper color-3">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3>Cyber Security</h3>
+          <p class="skill-desc">Pemahaman mendasar keamanan siber, analisis kerentanan sistem, dan infrastruktur jaringan.</p>
+          <div class="skill-tags">
+            <span class="tag">Network Defense</span>
+            <span class="tag">Cyber Security Basics</span>
+            <span class="tag">System Vulnerability</span>
+            <span class="tag">Secure Coding</span>
+            <span class="tag">CSSC Finalist</span>
+          </div>
+        </div>
+
+        <div class="glass-card skill-card">
+          <div class="skill-icon-wrapper color-4">
+            <i class="fa-solid fa-network-wired"></i>
+          </div>
+          <h3>Jaringan Komputer</h3>
+          <p class="skill-desc">Pengelolaan topologi jaringan, konfigurasi perangkat, analisis lalu lintas data, dan IoT.</p>
+          <div class="skill-tags">
+            <span class="tag">Computer Networks</span>
+            <span class="tag">TCP/IP Protocol</span>
+            <span class="tag">Network Topology</span>
+            <span class="tag">IoT Basics</span>
+            <span class="tag">Instruktur IoT</span>
+          </div>
+        </div>
+
+        <div class="glass-card skill-card">
+          <div class="skill-icon-wrapper color-5">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <h3>Machine Learning & Data</h3>
+          <p class="skill-desc">Pengolahan data, klasifikasi citra berbasis Convolutional Neural Network (CNN), dan analitik.</p>
+          <div class="skill-tags">
+            <span class="tag">Python Analytics</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">CNN Trash Detection</span>
+            <span class="tag">Smart Waste Models</span>
+          </div>
+        </div>
+
+        <div class="glass-card skill-card">
+          <div class="skill-icon-wrapper color-6">
+            <i class="fa-solid fa-diagram-project"></i>
+          </div>
+          <h3>Analisis Sistem & Soft Skills</h3>
+          <p class="skill-desc">Perancangan kebutuhan sistem perangkat lunak, problem solving, pemateri, dan kolaborasi tim.</p>
+          <div class="skill-tags">
+            <span class="tag">Software Analysis</span>
+            <span class="tag">System Flowchart</span>
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Technical Mentoring</span>
+            <span class="tag">Public Speaking</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="section contact">
-      <p class="section-label">KONTAK</p>
-      <h2>Mari Terhubung</h2>
-      <p>Email: <a href="mailto:emailkamu@gmail.com">emailkamu@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/eliaandrito-xyz" target="_blank" rel="noopener">github.com/eliaandrito-xyz</a></p>
-      <p>LinkedIn: <a href="#" onclick="return false;">Tambahkan link LinkedIn</a></p>
+    <!-- PROYEK SECTION -->
+    <section id="projects" class="section projects-section">
+      <div class="section-header">
+        <span class="section-subtitle"><i class="fa-solid fa-folder-open"></i> HASIL KARYA</span>
+        <h2 class="section-title">Proyek Yang Pernah Dikerjakan</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">Semua Proyek</button>
+        <button class="filter-btn" data-filter="web">Web Application</button>
+        <button class="filter-btn" data-filter="ml">Machine Learning & Data</button>
+        <button class="filter-btn" data-filter="system">Sistem Informasi</button>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: Smart Waste -->
+        <article class="glass-card project-card" data-category="ml web">
+          <div class="project-img-wrapper">
+            <img src="assets/web/sistem infromasi dan manajemen sampah.png" alt="Sistem Informasi dan Manajemen Sampah" class="project-img">
+            <div class="project-badge">Machine Learning</div>
+            <div class="project-overlay">
+              <button class="btn btn-sm btn-light open-project-modal" data-id="p1">
+                <i class="fa-solid fa-eye"></i> Detail Proyek
+              </button>
+              <a href="https://github.com/eliaandrito-xyz/smartwaste-dki" target="_blank" class="btn btn-sm btn-primary">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-meta">
+              <span><i class="fa-solid fa-code-branch"></i> Python & Web</span>
+            </div>
+            <h3 class="project-title">Smart Waste & Detection System</h3>
+            <p class="project-desc">
+              Sistem informasi manajemen sampah cerdas yang dilengkapi model prediksi volume dan klasifikasi sampah otomatis berbasis CNN (Computer Vision).
+            </p>
+            <div class="project-tags">
+              <span>Python</span>
+              <span>Machine Learning</span>
+              <span>TypeScript</span>
+              <span>Web Dashboard</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: Booking Perumahan -->
+        <article class="glass-card project-card" data-category="web system">
+          <div class="project-img-wrapper">
+            <img src="assets/web/sistem pembelian perumahan.png" alt="Sistem Pembelian Perumahan" class="project-img">
+            <div class="project-badge">Web Application</div>
+            <div class="project-overlay">
+              <button class="btn btn-sm btn-light open-project-modal" data-id="p2">
+                <i class="fa-solid fa-eye"></i> Detail Proyek
+              </button>
+              <a href="https://github.com/eliaandrito-xyz/Booking-Perumahan" target="_blank" class="btn btn-sm btn-primary">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-meta">
+              <span><i class="fa-solid fa-code-branch"></i> PHP & MySQL</span>
+            </div>
+            <h3 class="project-title">Sistem Booking & Manajemen Perumahan</h3>
+            <p class="project-desc">
+              Sistem informasi manajemen properti perumahan untuk mengelola katalog rumah, pengembang developer, fasiltas lokasi, dan reservasi/booking unit secara daring.
+            </p>
+            <div class="project-tags">
+              <span>PHP</span>
+              <span>MySQL</span>
+              <span>HTML5/CSS3</span>
+              <span>Bootstrap</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Booking Penjahit -->
+        <article class="glass-card project-card" data-category="web system">
+          <div class="project-img-wrapper">
+            <img src="assets/web/booking penjahit.png" alt="Sistem Booking Penjahit" class="project-img">
+            <div class="project-badge">Platform Web</div>
+            <div class="project-overlay">
+              <button class="btn btn-sm btn-light open-project-modal" data-id="p3">
+                <i class="fa-solid fa-eye"></i> Detail Proyek
+              </button>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-meta">
+              <span><i class="fa-solid fa-scissors"></i> Jasa & Layanan</span>
+            </div>
+            <h3 class="project-title">Sistem Booking Jasa Penjahit Online</h3>
+            <p class="project-desc">
+              Platform layanan pemesanan dan kustomisasi jahit pakaian secara online, memungkinkan pelanggan memilih model busana, estimasi pengerjaan, dan jadwal pengukuran.
+            </p>
+            <div class="project-tags">
+              <span>PHP</span>
+              <span>JavaScript</span>
+              <span>Database Relasional</span>
+              <span>UI Responsive</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4: Agen Samsat -->
+        <article class="glass-card project-card" data-category="system web">
+          <div class="project-img-wrapper">
+            <img src="assets/web/agen samsat.png" alt="Aplikasi Layanan Agen SAMSAT" class="project-img">
+            <div class="project-badge">Sistem Layanan</div>
+            <div class="project-overlay">
+              <button class="btn btn-sm btn-light open-project-modal" data-id="p4">
+                <i class="fa-solid fa-eye"></i> Detail Proyek
+              </button>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-meta">
+              <span><i class="fa-solid fa-car-side"></i> Administrasi Publik</span>
+            </div>
+            <h3 class="project-title">Sistem Informasi Layanan Agen SAMSAT</h3>
+            <p class="project-desc">
+              Aplikasi pendataan dan pelayanan perpanjangan pajak serta administrasi surat kendaraan bermotor melalui jaringan agen SAMSAT terintegrasi.
+            </p>
+            <div class="project-tags">
+              <span>PHP</span>
+              <span>MySQL</span>
+              <span>Manajemen Data</span>
+              <span>Laporan Publik</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 5: Manajemen Data Gereja -->
+        <article class="glass-card project-card" data-category="system">
+          <div class="project-img-wrapper">
+            <img src="assets/web/manajemen data gereja dan keuangan.png" alt="Manajemen Data Gereja dan Keuangan" class="project-img">
+            <div class="project-badge">Sistem Keuangan</div>
+            <div class="project-overlay">
+              <button class="btn btn-sm btn-light open-project-modal" data-id="p5">
+                <i class="fa-solid fa-eye"></i> Detail Proyek
+              </button>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-meta">
+              <span><i class="fa-solid fa-church"></i> Sistem Informasi</span>
+            </div>
+            <h3 class="project-title">Manajemen Data Gereja & Keuangan</h3>
+            <p class="project-desc">
+              Aplikasi pengelolaan data jemaat, struktur organisasi, inventarisasi aset gereja, serta pembukuan arus kas & laporan keuangan transparan.
+            </p>
+            <div class="project-tags">
+              <span>PHP</span>
+              <span>MySQL Security</span>
+              <span>Laporan Kas</span>
+              <span>Multi-User Role</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 6: Kasir Kosmetik -->
+        <article class="glass-card project-card" data-category="web">
+          <div class="project-img-wrapper placeholder-project">
+            <div class="pos-icon-box">
+              <i class="fa-solid fa-cash-register"></i>
+            </div>
+            <div class="project-badge">Point of Sale</div>
+            <div class="project-overlay">
+              <a href="https://github.com/eliaandrito-xyz/kasir_cosmetik" target="_blank" class="btn btn-sm btn-primary">
+                <i class="fa-brands fa-github"></i> Lihat GitHub
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-meta">
+              <span><i class="fa-solid fa-cart-shopping"></i> POS Application</span>
+            </div>
+            <h3 class="project-title">Aplikasi Kasir Kosmetik (Point of Sale)</h3>
+            <p class="project-desc">
+              Sistem kasir instan untuk pengelolaan toko kosmetik, stok barang, perhitungan total transaksi, diskon, dan cetak bukti pembayaran.
+            </p>
+            <div class="project-tags">
+              <span>JavaScript</span>
+              <span>DOM Manipulation</span>
+              <span>Local Storage</span>
+              <span>UI Kasir</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SERTIFIKAT & PRESTASI SECTION -->
+    <section id="certificates" class="section cert-section">
+      <div class="section-header">
+        <span class="section-subtitle"><i class="fa-solid fa-ribbon"></i> REKAP PRESTASI</span>
+        <h2 class="section-title">Sertifikat & Penghargaan</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="cert-grid">
+        <!-- Cert 1 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-shield-halved"></i> Cyber Security</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_Sertifikat finalis CSSC-6.png" alt="Sertifikat Finalis CSSC-6 2025" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">ADIGSI & National Cyber Security Connect 2025</span>
+            <h3>Finalis Cyber Security Startup Challenge (CSSC) 2025</h3>
+            <p>Penghargaan sebagai Finalis Nasional kompetisi keamanan siber di Jakarta.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/Sertifikat finalis CSSC-6.pdf" data-title="Finalis Cyber Security Startup Challenge (CSSC) 2025">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 2 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-graduation-cap"></i> Program Nasional</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_sertifikat PMM 4.png" alt="Sertifikat Pertukaran Mahasiswa Merdeka (PMM 4)" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Kemendikbudristek & IT Telkom Purwokerto</span>
+            <h3>Pertukaran Mahasiswa Merdeka (PMM 4)</h3>
+            <p>Program pertukaran akademik antar perguruan tinggi nasional Indonesia.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/sertifikat PMM 4.pdf" data-title="Sertifikat Pertukaran Mahasiswa Merdeka (PMM 4)">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 3 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-chalkboard-user"></i> Sertifikasi & Instruktur</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_sertifikat instruktur cyber dan Iot.png" alt="Sertifikat Instruktur Cyber Security & IoT" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Pelatihan Teknis Komputer & IoT</span>
+            <h3>Sertifikat Instruktur Cyber Security & IoT</h3>
+            <p>Sertifikat keahlian sebagai pengajar & instruktur di bidang Keamanan Siber dan Internet of Things.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/sertifikat instruktur cyber dan Iot.pdf" data-title="Sertifikat Instruktur Cyber Security & IoT">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 4 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-trophy"></i> Inovasi Digital</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_piagam pengahargaan lomba kavinya.png" alt="Piagam Penghargaan Lomba Inovasi Digital Kavinya" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Kavinya Digital Innovation Award</span>
+            <h3>Piagam Penghargaan Lomba Inovasi Digital Kavinya</h3>
+            <p>Piagam apresiasi inovasi teknologi perangkat lunak dan aplikasi berbasis digital.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/piagam pengahargaan lomba kavinya.pdf" data-title="Piagam Penghargaan Lomba Inovasi Digital Kavinya">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 5 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-palette"></i> Desain Grafis</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_sertifikat lomba desain grafis Unika.png" alt="Peserta Lomba Desain Grafis UNIKA" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Universitas Katolik Widya Mandira (UNIKA)</span>
+            <h3>Peserta Lomba Desain Grafis Tingkat Nasional - PISMA VIII</h3>
+            <p>Partisipasi kompetisi desain kreatif tingkat nasional pada Pekan Ilmiah dan Seni Mahasiswa.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/sertifikat lomba desain grafis Unika.pdf" data-title="Sertifikat Lomba Desain Grafis UNIKA">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 6 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-microchip"></i> Teknologi Terapan</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_prestasi bisang manufaktur dab teknologi terapan tahun 2024.png" alt="Prestasi Bidang Manufaktur & Teknologi Terapan 2024" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Kompetisi Teknologi Terapan 2024</span>
+            <h3>Prestasi Bidang Manufaktur & Teknologi Terapan 2024</h3>
+            <p>Penghargaan atas inovasi bidang manufaktur dan penerapan teknologi terapan.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/prestasi bisang manufaktur dab teknologi terapan tahun 2024.pdf" data-title="Prestasi Bidang Manufaktur & Teknologi Terapan 2024">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 7 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-star"></i> Akademik</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_prestasi bidang akademik.png" alt="Penghargaan Prestasi Bidang Akademik" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">STIKOM Uyelindo Kupang</span>
+            <h3>Penghargaan Prestasi Bidang Akademik</h3>
+            <p>Penghargaan atas pencapaian akademik berprestasi selama masa perkuliahan Informatika.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/prestasi bidang akademik.pdf" data-title="Penghargaan Prestasi Bidang Akademik">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 8 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-bullhorn"></i> Pemateri & Mentor</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_sertikat pemateri mabim.png" alt="Sertifikat Pemateri MABIM Informatika" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Himpunan Mahasiswa Teknik Informatika</span>
+            <h3>Pemateri Masa Bimbingan (MABIM) Informatika</h3>
+            <p>Sertifikat sebagai pemateri dan fasilitator bimbingan mahasiswa baru informatika.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/sertikat pemateri mabim.pdf" data-title="Sertifikat Pemateri MABIM Informatika">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 9 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-laptop"></i> Inovasi Digital</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_sertifikat lomba kavinya inovasi digital.png" alt="Sertifikat Lomba Kavinya Inovasi Digital" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Kavinya Inovasi Digital</span>
+            <h3>Sertifikat Lomba Kavinya Inovasi Digital</h3>
+            <p>Sertifikat keikutsertaan dan pencapaian karya inovasi digital.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/sertifikat lomba kavinya inovasi digital.pdf" data-title="Sertifikat Lomba Kavinya Inovasi Digital">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Cert 10 -->
+        <div class="glass-card cert-card">
+          <div class="cert-badge-top"><i class="fa-solid fa-award"></i> Kompetisi Nasional</div>
+          <div class="cert-img-box">
+            <img src="assets/sertifikat/thumb_sertifikat partisipasi lomba inovasi difital univ. kristen imanuel jogja.png" alt="Sertifikat Partisipasi UKIM Jogja" class="cert-thumb-img">
+          </div>
+          <div class="cert-info">
+            <span class="cert-issuer">Universitas Kristen Immanuel Yogyakarta</span>
+            <h3>Sertifikat Partisipasi Lomba Inovasi Digital UKIM Jogja</h3>
+            <p>Sertifikat partisipasi lomba inovasi digital perguruan tinggi di Yogyakarta.</p>
+            <button class="btn btn-sm btn-outline open-pdf-modal" data-file="assets/sertifikat/sertifikat partisipasi lomba inovasi difital univ. kristen imanuel jogja.pdf" data-title="Sertifikat Lomba Inovasi Digital UKIM Jogja">
+              <i class="fa-solid fa-file-pdf"></i> Lihat PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK SECTION -->
+    <section id="contact" class="section contact-section">
+      <div class="section-header">
+        <span class="section-subtitle"><i class="fa-solid fa-paper-plane"></i> HUBUNGI SAYA</span>
+        <h2 class="section-title">Mari Terhubung & Berdiskusi</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info Cards -->
+        <div class="contact-info-col">
+          <div class="glass-card contact-card">
+            <div class="c-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="c-details">
+              <h4>WhatsApp / Telepon</h4>
+              <p>+62 85-2373-0772</p>
+              <a href="https://wa.me/628523730772" target="_blank" class="c-link">Kirim WhatsApp &rarr;</a>
+            </div>
+          </div>
+
+          <div class="glass-card contact-card">
+            <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="c-details">
+              <h4>Alamat Email</h4>
+              <p>eliaandrito@gmail.com</p>
+              <button class="c-link copy-email-btn" data-email="eliaandrito@gmail.com">
+                <i class="fa-solid fa-copy"></i> Salin Email
+              </button>
+            </div>
+          </div>
+
+          <div class="glass-card contact-card">
+            <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="c-details">
+              <h4>Lokasi</h4>
+              <p>Kupang, Nusa Tenggara Timur, Indonesia</p>
+              <span class="c-sub">Terbuka untuk Remote & On-Site</span>
+            </div>
+          </div>
+
+          <div class="glass-card contact-card">
+            <div class="c-icon"><i class="fa-solid fa-hashtag"></i></div>
+            <div class="c-details">
+              <h4>Sosial Media</h4>
+              <p>@andritoelia</p>
+              <div class="social-links">
+                <a href="https://github.com/eliaandrito-xyz" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://instagram.com/andritoelia" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/628523730772" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Interactive Message Form -->
+        <div class="glass-card contact-form-card">
+          <div class="card-header">
+            <i class="fa-solid fa-comments card-icon"></i>
+            <h3>Kirim Pesan Langsung</h3>
+          </div>
+          <p class="form-desc">Isi formulir di bawah untuk mengirim pesan langsung ke WhatsApp Andrito Elia:</p>
+          
+          <form id="wa-form" class="wa-form">
+            <div class="form-group">
+              <label for="name">Nama Anda</label>
+              <input type="text" id="name" placeholder="Contoh: Budi Santoso" required>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Topik / Keperluan</label>
+              <input type="text" id="subject" placeholder="Contoh: Penawaran Project / Job Offer" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Pesan Anda</label>
+              <textarea id="message" rows="4" placeholder="Halo Andrito, saya tertarik untuk mendiskusikan proyek..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              <span>Kirim via WhatsApp</span> <i class="fa-brands fa-whatsapp"></i>
+            </button>
+          </form>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>© 2026 Elia Andrito. All Rights Reserved.</p>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3><i class="fa-solid fa-code"></i> ANDRITO ELIA</h3>
+        <p>Lulusan Teknik Informatika | Web Developer & Cyber Security Enthusiast</p>
+      </div>
+
+      <div class="footer-socials">
+        <a href="https://github.com/eliaandrito-xyz" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://instagram.com/andritoelia" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/628523730772" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="mailto:eliaandrito@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+
+      <div class="footer-copy">
+        <p>&copy; 2026 Andrito Elia. Hak Cipta Dilindungi Undang-Undang.</p>
+      </div>
+    </div>
   </footer>
+
+  <!-- PDF VIEWER MODAL -->
+  <div id="pdf-modal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container glass-modal">
+      <div class="modal-header">
+        <h3 id="pdf-modal-title"><i class="fa-solid fa-file-pdf"></i> Dokumen Sertifikat</h3>
+        <button class="modal-close" id="pdf-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdf-iframe" src="" frameborder="0"></iframe>
+      </div>
+      <div class="modal-footer">
+        <a id="pdf-download-btn" href="" download class="btn btn-sm btn-primary">
+          <i class="fa-solid fa-download"></i> Unduh File PDF
+        </a>
+        <button class="btn btn-sm btn-secondary modal-close-btn">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT DETAIL MODAL -->
+  <div id="project-modal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container glass-modal modal-lg">
+      <div class="modal-header">
+        <h3 id="project-modal-title"><i class="fa-solid fa-diagram-project"></i> Detail Proyek</h3>
+        <button class="modal-close" id="project-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="project-modal-content">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-circle-check toast-icon"></i>
+    <span id="toast-message">Pesan berhasil disalin!</span>
+  </div>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="back-to-top" class="back-to-top" aria-label="Kembali ke atas">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
   <script src="script.js"></script>
 </body>
