@@ -872,10 +872,11 @@ img {
 
 .profile-card-footer {
   position: absolute;
-  bottom: 26px;
-  left: 32px;
-  right: 32px;
+  bottom: 20px;
+  left: 24px;
+  right: 24px;
   z-index: 2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
 }
 
 .profile-card-footer h3 {
@@ -890,7 +891,11 @@ img {
   font-weight: 500;
 }
 
-/* Floating Badges */
+/* Floating Badges & Wrapper */
+.hero-badges-wrapper {
+  width: 100%;
+}
+
 .floating-badge {
   position: absolute;
   padding: 8px 14px;
@@ -2117,6 +2122,11 @@ img {
     padding-top: 18px;
   }
 
+  .stat-card {
+    align-items: center;
+    text-align: center;
+  }
+
   .stat-num-wrapper {
     font-size: 1.35rem;
   }
@@ -2127,17 +2137,48 @@ img {
 
   .profile-card-glass {
     max-width: 100%;
-    padding: 12px;
+    padding: 14px;
   }
 
   .profile-image-container {
-    height: 330px;
+    height: 340px;
+  }
+
+  .profile-card-footer {
+    bottom: 16px;
+    left: 18px;
+    right: 18px;
+  }
+
+  .profile-card-footer h3 {
+    font-size: 1.2rem;
+  }
+
+  .profile-card-footer p {
+    font-size: 0.8rem;
+  }
+
+  .hero-badges-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
   }
 
   .floating-badge {
     position: static;
     display: inline-flex;
-    margin: 4px;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 7px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    background: rgba(12, 16, 29, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
     animation: none;
     box-shadow: none;
   }
